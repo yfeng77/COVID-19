@@ -117,7 +117,6 @@ public class SearchFragment extends Fragment {
                                 tl.addView(tr);
 
                             }
-                            TStateName.setText("That work!");
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -127,7 +126,7 @@ public class SearchFragment extends Fragment {
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        TStateName.setText("That didn't work!");
+                        Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
 
@@ -180,7 +179,8 @@ public class SearchFragment extends Fragment {
                         }, new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                Tcases.setText("That didn't work!");
+                                TStateName.setText("Error");
+                                Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_LONG).show();
                             }
                         });
 

@@ -5,10 +5,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -58,7 +60,9 @@ public class StatsFragment extends Fragment {
         WebView myWebView = (WebView) view.findViewById(R.id.webView);
         myWebView.getSettings().setLoadWithOverviewMode(true);
         myWebView.getSettings().setUseWideViewPort(true);
-        myWebView.loadUrl("https://datawrapper.dwcdn.net/MhAYA/51/#embed");
+        myWebView.getSettings().setJavaScriptEnabled(true);
+        myWebView.setWebChromeClient(new WebChromeClient());
+        myWebView.loadUrl("https://lamp.cse.fau.edu/~yfeng2016/covidchart/linechart.html");
 
 
 
@@ -102,7 +106,7 @@ public class StatsFragment extends Fragment {
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Tcases.setText("That didn't work!");
+                        Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
 
@@ -183,7 +187,7 @@ public class StatsFragment extends Fragment {
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Tcases.setText("That didn't work!");
+                        Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
 
