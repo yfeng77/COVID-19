@@ -220,7 +220,7 @@
 
         <TextView
             android:id="@+id/Location"
-            android:layout_width="wrap_content"
+            android:layout_width="122dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="5dp"
@@ -230,7 +230,7 @@
 
         <TextView
             android:id="@+id/SCases"
-            android:layout_width="wrap_content"
+            android:layout_width="23dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="5dp"
@@ -245,16 +245,6 @@
             android:layout_weight="1"
             android:padding="5dp"
             android:text="Deaths"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/SRecovered"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="5dp"
-            android:text="Recovered"
             android:textColor="#FFFFFF"
             android:textStyle="bold" />
 

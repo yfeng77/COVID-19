@@ -135,7 +135,7 @@ public class StatsFragment extends Fragment {
         // Start the queue
         requestQueue.start();
 
-        String url2 = "https://covidtracking.com/api/states";
+        String url2 = "https://corona.lmao.ninja/v2/states";
         // Formulate the request and handle the response.
         JsonArrayRequest jsonarrayRequest = new JsonArrayRequest
                 (Request.Method.GET, url2, null, new Response.Listener<JSONArray>() {
@@ -149,30 +149,25 @@ public class StatsFragment extends Fragment {
 
                                 TableRow tr=new TableRow(getActivity());
                                 TextView Tlocation = new TextView(getActivity());
-                                Tlocation.setPadding(15,0,190,10);
+                                Tlocation.setPadding(15,0,5,10);
                                 TextView Tcases = new TextView(getActivity());
                                 Tcases.setPadding(0,0,90,10);
                                 TextView Tdeath = new TextView(getActivity());
                                 Tdeath.setPadding(0,0,120,10);
-                                TextView Trecovered = new TextView(getActivity());
-                                Trecovered.setPadding(0,0,0,10);
 
                                 JSONObject obj = response.getJSONObject(i);
                                 String location = obj.getString ("state");
                                 Tlocation.setText(location);
                                 tr.addView(Tlocation);
 
-                                String cases = obj.getString ("positive");
+                                String cases = obj.getString ("cases");
                                 Tcases.setText(cases);
                                 tr.addView(Tcases);
 
-                                String deaths = obj.getString ("death");
+                                String deaths = obj.getString ("deaths");
                                 Tdeath.setText(deaths);
                                 tr.addView(Tdeath);
-
-                                String recovered = obj.getString ("recovered");
-                                Trecovered.setText(recovered);
-                                tr.addView(Trecovered);
+                                
 
                                 tl.addView(tr);
 
