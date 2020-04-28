@@ -1,24 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:ems="10"
+            android:hint="Enter State"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:text="Search" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/StateName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="StateName"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <TableLayout
         android:id="@+id/TotalStats"
         android:layout_width="wrap_content"
-        android:layout_height="96dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:background="#DFC3BCBC"
-        android:gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/StateName">
+        android:layout_marginBottom="2dp"
+        android:background="#DFC3BCBC">
 
         <TableRow
             android:layout_width="match_parent"
@@ -36,11 +71,12 @@
                 android:layout_marginBottom="0.5dp"
                 android:background="#FAFAFA"
                 android:gravity="center"
-                android:paddingLeft="30dp"
+                android:paddingLeft="20dp"
                 android:paddingTop="5dp"
-                android:paddingRight="30dp"
+                android:paddingRight="20dp"
                 android:paddingBottom="5dp"
                 android:text="Cases"
+                android:textAllCaps="true"
                 android:textColor="#C2272D"
                 android:textStyle="bold" />
 
@@ -51,11 +87,12 @@
                 android:layout_margin="0.5dp"
                 android:background="#FAFAFA"
                 android:gravity="center"
-                android:paddingLeft="30dp"
+                android:paddingLeft="20dp"
                 android:paddingTop="5dp"
-                android:paddingRight="30dp"
+                android:paddingRight="20dp"
                 android:paddingBottom="5dp"
                 android:text="Deaths"
+                android:textAllCaps="true"
                 android:textStyle="bold" />
 
             <TextView
@@ -70,11 +107,12 @@
                 android:layout_marginBottom="0.5dp"
                 android:background="#FAFAFA"
                 android:gravity="center"
-                android:paddingLeft="20dp"
+                android:paddingLeft="15dp"
                 android:paddingTop="5dp"
-                android:paddingRight="20dp"
+                android:paddingRight="15dp"
                 android:paddingBottom="5dp"
                 android:text="Recovered"
+                android:textAllCaps="true"
                 android:textColor="#009688"
                 android:textStyle="bold" />
 
@@ -96,9 +134,9 @@
                 android:layout_marginBottom="0.5dp"
                 android:background="#FAFAFA"
                 android:gravity="center"
-                android:paddingLeft="30dp"
+                android:paddingLeft="20dp"
                 android:paddingTop="5dp"
-                android:paddingRight="30dp"
+                android:paddingRight="20dp"
                 android:paddingBottom="5dp"
                 android:textColor="#C2272D"
                 android:textSize="18sp"
@@ -111,9 +149,9 @@
                 android:layout_margin="0.5dp"
                 android:background="#FAFAFA"
                 android:gravity="center"
-                android:paddingLeft="30dp"
+                android:paddingLeft="20dp"
                 android:paddingTop="5dp"
-                android:paddingRight="30dp"
+                android:paddingRight="20dp"
                 android:paddingBottom="5dp"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -130,7 +168,7 @@
                 android:gravity="center"
                 android:paddingLeft="20dp"
                 android:paddingTop="5dp"
-                android:paddingRight="30dp"
+                android:paddingRight="15dp"
                 android:paddingBottom="5dp"
                 android:textColor="#009688"
                 android:textSize="18sp"
@@ -152,9 +190,9 @@
                 android:layout_marginBottom="0.5dp"
                 android:background="#FAFAFA"
                 android:gravity="center"
-                android:paddingLeft="30dp"
+                android:paddingLeft="20dp"
                 android:paddingTop="5dp"
-                android:paddingRight="30dp"
+                android:paddingRight="20dp"
                 android:paddingBottom="5dp"
                 android:textColor="#C2272D"
                 android:textStyle="bold" />
@@ -166,9 +204,9 @@
                 android:layout_margin="0.5dp"
                 android:background="#FAFAFA"
                 android:gravity="center"
-                android:paddingLeft="30dp"
+                android:paddingLeft="20dp"
                 android:paddingTop="5dp"
-                android:paddingRight="30dp"
+                android:paddingRight="20dp"
                 android:paddingBottom="5dp"
                 android:textStyle="bold" />
 
@@ -184,9 +222,9 @@
                 android:layout_marginBottom="0.5dp"
                 android:background="#FAFAFA"
                 android:gravity="center"
-                android:paddingLeft="20dp"
+                android:paddingLeft="15dp"
                 android:paddingTop="5dp"
-                android:paddingRight="30dp"
+                android:paddingRight="20dp"
                 android:paddingBottom="5dp"
                 android:textColor="#009688"
                 android:textStyle="bold" />
@@ -195,188 +233,75 @@
 
     </TableLayout>
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+    <TableRow
+        android:id="@+id/TitleRow"
+        android:layout_width="363dp"
+        android:layout_height="28dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="Enter State"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toStartOf="@+id/search"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="#C2272D"
+        android:scrollbarStyle="insideInset">
 
-    <Button
-        android:id="@+id/search"
-        android:layout_width="94dp"
-        android:layout_height="50dp"
+        <TextView
+            android:id="@+id/Location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:text="Location"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/SCases"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:text="Cases"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/SDeaths"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:text="Deaths"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/SRecovered"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:text="Recovered"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+
+    </TableRow>
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:text="Search"
-        app:layout_constraintBaseline_toBaselineOf="@+id/editText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/editText" />
+        android:layout_marginRight="16dp">
 
-    <TextView
-        android:id="@+id/StateName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="State Name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
-
-    <TableLayout
-        android:id="@+id/CityStats"
-        android:layout_width="356dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:layout_marginBottom="32dp"
-        android:scrollbarStyle="insideOverlay"
-        android:scrollbars="horizontal"
-        android:verticalScrollbarPosition="left"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TotalStats">
-
-        <TableRow
-            android:id="@+id/TitleRow"
+        <TableLayout
+            android:id="@+id/CityStats"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#C2272D"
-            android:scrollbarStyle="insideInset">
+            android:layout_height="wrap_content"
+            android:scrollbarStyle="insideOverlay"
+            android:scrollbars="horizontal" />
+    </ScrollView>
 
-            <TextView
-                android:id="@+id/Location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="5dp"
-                android:text="Location"
-                android:textColor="#FFFFFF"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/SCases"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="5dp"
-                android:text="Cases"
-                android:textColor="#FFFFFF"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/SDeaths"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="5dp"
-                android:text="Deaths"
-                android:textColor="#FFFFFF"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/SRecovered"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="5dp"
-                android:text="Recovered"
-                android:textColor="#FFFFFF"
-                android:textStyle="bold" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/L1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="5dp"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/C1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="5dp"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/D1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="5dp"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/R1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="5dp"
-                android:text="TextView" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/L2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="5dp"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/C2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="5dp"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/D2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="5dp"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/R2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="5dp"
-                android:text="TextView" />
-
-        </TableRow>
-    </TableLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

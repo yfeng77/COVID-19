@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -31,7 +34,7 @@ import org.json.JSONObject;
 
 public class StatsFragment extends Fragment {
 
-    TextView Tcases,TcasesI,Tdeaths,TdeathsI,Trecovered,TrecoveredI,TL1,TC1,TD1,TR1,TL2,TC2,TD2,TR2;
+    TextView Tcases,TcasesI,Tdeaths,TdeathsI,Trecovered,TrecoveredI;
     public static final String TAG = "MyTag";
     RequestQueue requestQueue;  // Assume this exists.
 
@@ -51,14 +54,13 @@ public class StatsFragment extends Fragment {
         TdeathsI = (TextView) view.findViewById(R.id.DeathI);
         Trecovered = (TextView) view.findViewById(R.id.RecoveredN);
         TrecoveredI = (TextView) view.findViewById(R.id.RecoveredI);
-        TL1 = (TextView) view.findViewById(R.id.L1);
-        TC1 = (TextView) view.findViewById(R.id.C1);
-        TD1 = (TextView) view.findViewById(R.id.D1);
-        TR1 = (TextView) view.findViewById(R.id.R1);
-        TL2 = (TextView) view.findViewById(R.id.L2);
-        TC2 = (TextView) view.findViewById(R.id.C2);
-        TD2 = (TextView) view.findViewById(R.id.D2);
-        TR2 = (TextView) view.findViewById(R.id.R2);
+
+        WebView myWebView = (WebView) view.findViewById(R.id.webView);
+        myWebView.getSettings().setLoadWithOverviewMode(true);
+        myWebView.getSettings().setUseWideViewPort(true);
+        myWebView.loadUrl("https://datawrapper.dwcdn.net/MhAYA/51/#embed");
+
+
 
         // Instantiate the cache
         Cache cache = new DiskBasedCache(getActivity().getCacheDir(), 1024 * 1024); // 1MB cap
@@ -137,28 +139,40 @@ public class StatsFragment extends Fragment {
                     @Override
                     public void onResponse(JSONArray response) {
                         try {
+                            TableLayout tl = (TableLayout) getActivity().findViewById(R.id.CityStats);
 
-                            JSONObject AK = response.getJSONObject(0);
-                            String l1 = AK.getString ("state");
-                            String c1 = AK.getString ("positive");
-                            String d1 = AK.getString ("death");
-                            String r1 = AK.getString ("recovered");
+                            for (int i = 0; i < response.length(); i++) {
 
-                            JSONObject AL = response.getJSONObject(1);
-                            String l2 = AL.getString ("state");
-                            String c2 = AL.getString ("positive");
-                            String d2 = AL.getString ("death");
-                            String r2 = AL.getString ("recovered");
+                                TableRow tr=new TableRow(getActivity());
+                                TextView Tlocation = new TextView(getActivity());
+                                Tlocation.setPadding(15,0,190,10);
+                                TextView Tcases = new TextView(getActivity());
+                                Tcases.setPadding(0,0,90,10);
+                                TextView Tdeath = new TextView(getActivity());
+                                Tdeath.setPadding(0,0,120,10);
+                                TextView Trecovered = new TextView(getActivity());
+                                Trecovered.setPadding(0,0,0,10);
 
-                            TL1.setText(l1);
-                            TC1.setText(c1);
-                            TD1.setText(d1);
-                            TR1.setText(r1);
+                                JSONObject obj = response.getJSONObject(i);
+                                String location = obj.getString ("state");
+                                Tlocation.setText(location);
+                                tr.addView(Tlocation);
 
-                            TL2.setText(l2);
-                            TC2.setText(c2);
-                            TD2.setText(d2);
-                            TR2.setText(r2);
+                                String cases = obj.getString ("positive");
+                                Tcases.setText(cases);
+                                tr.addView(Tcases);
+
+                                String deaths = obj.getString ("death");
+                                Tdeath.setText(deaths);
+                                tr.addView(Tdeath);
+
+                                String recovered = obj.getString ("recovered");
+                                Trecovered.setText(recovered);
+                                tr.addView(Trecovered);
+
+                                tl.addView(tr);
+
+                            }
 
 
                         } catch (JSONException e) {
@@ -169,7 +183,7 @@ public class StatsFragment extends Fragment {
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        TL1.setText("That didn't work!");
+                        Tcases.setText("That didn't work!");
                     }
                 });
 
