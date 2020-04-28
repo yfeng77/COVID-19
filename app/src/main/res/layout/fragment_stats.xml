@@ -201,6 +201,7 @@
         android:id="@+id/webView"
         android:layout_width="404dp"
         android:layout_height="205dp"
+        android:layout_gravity="center"
         android:layout_marginTop="24dp">
 
     </WebView>
