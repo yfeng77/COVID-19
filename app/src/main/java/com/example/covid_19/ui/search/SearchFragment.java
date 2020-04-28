@@ -140,7 +140,6 @@ public class SearchFragment extends Fragment {
             {
                 EditText editText = (EditText) getActivity().findViewById(R.id.editText);
                 String name = editText.getText().toString();
-                TStateName.setText(name);
 
                 Cache cache = new DiskBasedCache(getActivity().getCacheDir(), 1024 * 1024); // 1MB cap
 
@@ -152,23 +151,32 @@ public class SearchFragment extends Fragment {
                 // Start the queue
                 requestQueue.start();
 
-                String url = "https://corona.lmao.ninja/v2/states/"+name+"?yesterday=1";
+                String url = "https://covidtracking.com/api/states/daily?state="+name;
                 // Formulate the request and handle the response.
-                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                        (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                JsonArrayRequest jsonarrayRequest = new JsonArrayRequest
+                        (Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+                            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                             @Override
-                            public void onResponse(JSONObject response) {
+                            public void onResponse(JSONArray response) {
                                 try {
+                                    for (int i = 0; i < 1; i++) {
 
-                                    String cases = response.getString ("cases");
-                                    String casesI = response.getString ("todayCases");
-                                    String deaths = response.getString ("deaths");
-                                    String deathsI = response.getString ("todayDeaths");
+                                        JSONObject obj = response.getJSONObject(i);
+                                        String state = obj.getString ("state");
+                                        String cases =  obj.getString ("positive");
+                                        String casesI =  obj.getString ("positiveIncrease");
+                                        String deaths =  obj.getString ("death");
+                                        String deathsI =  obj.getString ("deathIncrease");
+                                        String recovered =  obj.getString ("recovered");
 
-                                    Tcases.setText(cases);
-                                    TcasesI.setText("+"+casesI);
-                                    Tdeaths.setText(deaths);
-                                    TdeathsI.setText("+"+deathsI);
+                                        TStateName.setText(state);
+                                        Tcases.setText(cases);
+                                        TcasesI.setText("+"+casesI);
+                                        Tdeaths.setText(deaths);
+                                        TdeathsI.setText("+"+deathsI);
+                                        Trecovered.setText(recovered);
+
+                                    }
 
 
                                 } catch (JSONException e) {
@@ -185,9 +193,9 @@ public class SearchFragment extends Fragment {
                         });
 
                 // Set the tag on the request.
-                jsonObjectRequest.setTag(TAG);
+                jsonarrayRequest.setTag(TAG);
                 // Add the request to the RequestQueue.
-                requestQueue.add(jsonObjectRequest);
+                requestQueue.add(jsonarrayRequest);
             }
 
         });
