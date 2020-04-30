@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <item
-        android:id="@+id/navigation_stats"
+        android:id="@+id/navigation_us"
         android:icon="@drawable/home"
-        android:title="@string/title_stats" />
+        android:title="@string/title_us" />
 
     <item
         android:id="@+id/navigation_search"
@@ -14,17 +14,17 @@
         android:title="@string/title_search" />
 
     <item
-        android:id="@+id/navigation_graph"
-        android:contentDescription="@string/title_graph"
-        android:icon="@drawable/graph"
-        android:title="@string/title_graph"
-        android:titleCondensed="@string/title_graph" />
+        android:id="@+id/navigation_world"
+        android:icon="@drawable/world"
+        android:title="@string/title_world" />
     <item
         android:id="@+id/navigation_news"
-        android:contentDescription="@string/title_news"
         android:icon="@drawable/news"
-        android:title="@string/title_news"
-        android:titleCondensed="@string/title_news" />
+        android:title="@string/title_news" />
+    <item
+        android:id="@+id/navigation_user"
+        android:icon="@drawable/user"
+        android:title="@string/title_user" />
 
 
 </menu>
