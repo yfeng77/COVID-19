@@ -82,7 +82,7 @@ public class NewsFragment extends Fragment {
         // Start the queue
         requestQueue.start();
 
-        String url = "https://newsapi.org/v2/everything?q=COVID&from=2020-04-27&sortBy=publishedAt&apiKey=e67d205313494e0b963b270d14823340&pageSize=10&page=1";
+        String url = "https://newsapi.org/v2/everything?q=COVID&from=2020-04-27&sortBy=publishedAt&apiKey=e67d205313494e0b963b270d14823340&pageSize=20&page=1";
         // Formulate the request and handle the response.
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {

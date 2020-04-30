@@ -1,17 +1,15 @@
 package com.example.covid_19.ui.search;
 
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,17 +28,14 @@ import com.android.volley.toolbox.BasicNetwork;
 import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.covid_19.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-
 public class SearchFragment extends Fragment {
-    TextView Tcases,TcasesI,Tdeaths,TdeathsI,Trecovered,TrecoveredI,TStateName;
+    TextView Tcases,TcasesI,Tdeaths,TdeathsI,Trecovered,TStateName;
     public static final String TAG = "MyTag";
     RequestQueue requestQueue;  // Assume this exists.
 
@@ -61,79 +56,16 @@ public class SearchFragment extends Fragment {
         Tdeaths = (TextView) view.findViewById(R.id.DeathN);
         TdeathsI = (TextView) view.findViewById(R.id.DeathI);
         Trecovered = (TextView) view.findViewById(R.id.RecoveredN);
-        TrecoveredI = (TextView) view.findViewById(R.id.RecoveredI);
         TStateName = (TextView) view.findViewById(R.id.StateName);
         Button search = (Button) view.findViewById(R.id.search);
 
-        Cache cache = new DiskBasedCache(getActivity().getCacheDir(), 1024 * 1024); // 1MB cap
+        WebView myWebView = (WebView) view.findViewById(R.id.webView);
+        myWebView.getSettings().setLoadWithOverviewMode(true);
+        myWebView.getSettings().setUseWideViewPort(true);
+        myWebView.getSettings().setJavaScriptEnabled(true);
+        myWebView.setWebChromeClient(new WebChromeClient());
+        myWebView.loadUrl("https://lamp.cse.fau.edu/~yfeng2016/covidchart/StateChart.html");
 
-        // Set up the network to use HttpURLConnection as the HTTP client.
-        Network network = new BasicNetwork(new HurlStack());
-
-        // Instantiate the RequestQueue with the cache and network.
-        requestQueue = new RequestQueue(cache, network);
-        // Start the queue
-        requestQueue.start();
-
-        String url2 = "https://covidtracking.com/api/states";
-        // Formulate the request and handle the response.
-        JsonArrayRequest jsonarrayRequest = new JsonArrayRequest
-                (Request.Method.GET, url2, null, new Response.Listener<JSONArray>() {
-                    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        try {
-                            TableLayout tl = (TableLayout) getActivity().findViewById(R.id.CityStats);
-
-                            for (int i = 0; i < response.length(); i++) {
-
-                                TableRow tr=new TableRow(getActivity());
-                                TextView Tlocation = new TextView(getActivity());
-                                Tlocation.setPadding(15,0,190,10);
-                                TextView Tcases = new TextView(getActivity());
-                                Tcases.setPadding(0,0,90,10);
-                                TextView Tdeath = new TextView(getActivity());
-                                Tdeath.setPadding(0,0,120,10);
-                                TextView Trecovered = new TextView(getActivity());
-                                Trecovered.setPadding(0,0,0,10);
-
-                                JSONObject obj = response.getJSONObject(i);
-                                String location = obj.getString ("state");
-                                Tlocation.setText(location);
-                                tr.addView(Tlocation);
-
-                                String cases = obj.getString ("positive");
-                                Tcases.setText(cases);
-                                tr.addView(Tcases);
-
-                                String deaths = obj.getString ("death");
-                                Tdeath.setText(deaths);
-                                tr.addView(Tdeath);
-
-                                String recovered = obj.getString ("recovered");
-                                Trecovered.setText(recovered);
-                                tr.addView(Trecovered);
-
-                                tl.addView(tr);
-
-                            }
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                });
-
-        // Set the tag on the request.
-        jsonarrayRequest.setTag(TAG);
-
-        requestQueue.add(jsonarrayRequest);
 
         search.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view)
@@ -151,7 +83,7 @@ public class SearchFragment extends Fragment {
                 // Start the queue
                 requestQueue.start();
 
-                String url = "https://covidtracking.com/api/states/daily?state="+name;
+                String url = "https://covidtracking.com/api/v1/states/"+name+"/daily.json";
                 // Formulate the request and handle the response.
                 JsonArrayRequest jsonarrayRequest = new JsonArrayRequest
                         (Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
@@ -200,8 +132,4 @@ public class SearchFragment extends Fragment {
 
         });
     }
-
-
-
-
 }

@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="World"
+        android:textAllCaps="false"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
     <TableLayout
         android:id="@+id/TotalStats"
         android:layout_width="wrap_content"
@@ -14,28 +25,26 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
+        android:layout_marginBottom="2dp"
         android:background="#DFC3BCBC">
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center">
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/cases"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="1dp"
                 android:layout_marginLeft="1dp"
                 android:layout_marginTop="0.5dp"
-                android:layout_marginEnd="0.5dp"
                 android:layout_marginRight="0.5dp"
                 android:layout_marginBottom="0.5dp"
                 android:background="#FAFAFA"
                 android:gravity="center"
-                android:paddingLeft="20dp"
+                android:paddingLeft="15dp"
                 android:paddingTop="5dp"
-                android:paddingRight="20dp"
+                android:paddingRight="15dp"
                 android:paddingBottom="5dp"
                 android:text="Cases"
                 android:textAllCaps="true"
@@ -49,9 +58,9 @@
                 android:layout_margin="0.5dp"
                 android:background="#FAFAFA"
                 android:gravity="center"
-                android:paddingLeft="20dp"
+                android:paddingLeft="15dp"
                 android:paddingTop="5dp"
-                android:paddingRight="20dp"
+                android:paddingRight="15dp"
                 android:paddingBottom="5dp"
                 android:text="Deaths"
                 android:textAllCaps="true"
@@ -61,17 +70,15 @@
                 android:id="@+id/recovered"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="0.5dp"
                 android:layout_marginLeft="0.5dp"
                 android:layout_marginTop="0.5dp"
-                android:layout_marginEnd="1dp"
                 android:layout_marginRight="1dp"
                 android:layout_marginBottom="0.5dp"
                 android:background="#FAFAFA"
                 android:gravity="center"
-                android:paddingLeft="20dp"
+                android:paddingLeft="10dp"
                 android:paddingTop="5dp"
-                android:paddingRight="20dp"
+                android:paddingRight="10dp"
                 android:paddingBottom="5dp"
                 android:text="Recovered"
                 android:textAllCaps="true"
@@ -82,27 +89,24 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center">
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/CasesN"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="1dp"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="1dp"
                 android:layout_marginTop="0.5dp"
-                android:layout_marginEnd="0.5dp"
                 android:layout_marginRight="0.5dp"
                 android:layout_marginBottom="0.5dp"
                 android:background="#FAFAFA"
                 android:gravity="center"
-                android:paddingLeft="20dp"
+                android:paddingLeft="15dp"
                 android:paddingTop="5dp"
-                android:paddingRight="20dp"
+                android:paddingRight="15dp"
                 android:paddingBottom="5dp"
                 android:textColor="#C2272D"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -112,11 +116,11 @@
                 android:layout_margin="0.5dp"
                 android:background="#FAFAFA"
                 android:gravity="center"
-                android:paddingLeft="20dp"
+                android:paddingLeft="15dp"
                 android:paddingTop="5dp"
-                android:paddingRight="20dp"
+                android:paddingRight="15dp"
                 android:paddingBottom="5dp"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -129,20 +133,19 @@
                 android:layout_marginBottom="0.5dp"
                 android:background="#FAFAFA"
                 android:gravity="center"
-                android:paddingLeft="20dp"
+                android:paddingLeft="10dp"
                 android:paddingTop="5dp"
-                android:paddingRight="20dp"
+                android:paddingRight="10dp"
                 android:paddingBottom="5dp"
                 android:textColor="#009688"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center">
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/CasesI"
@@ -154,9 +157,9 @@
                 android:layout_marginBottom="0.5dp"
                 android:background="#FAFAFA"
                 android:gravity="center"
-                android:paddingLeft="20dp"
+                android:paddingLeft="15dp"
                 android:paddingTop="5dp"
-                android:paddingRight="20dp"
+                android:paddingRight="15dp"
                 android:paddingBottom="5dp"
                 android:textColor="#C2272D"
                 android:textStyle="bold" />
@@ -168,27 +171,25 @@
                 android:layout_margin="0.5dp"
                 android:background="#FAFAFA"
                 android:gravity="center"
-                android:paddingLeft="20dp"
+                android:paddingLeft="15dp"
                 android:paddingTop="5dp"
-                android:paddingRight="20dp"
+                android:paddingRight="15dp"
                 android:paddingBottom="5dp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/RecoveredI"
-                android:layout_width="126dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="0.5dp"
                 android:layout_marginLeft="0.5dp"
                 android:layout_marginTop="0.5dp"
-                android:layout_marginEnd="1dp"
                 android:layout_marginRight="1dp"
                 android:layout_marginBottom="0.5dp"
                 android:background="#FAFAFA"
                 android:gravity="center"
-                android:paddingLeft="20dp"
+                android:paddingLeft="10dp"
                 android:paddingTop="5dp"
-                android:paddingRight="20dp"
+                android:paddingRight="10dp"
                 android:paddingBottom="5dp"
                 android:textColor="#009688"
                 android:textStyle="bold" />
@@ -202,70 +203,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="24dp">
-
-    </WebView>
-
-    <TableRow
-        android:id="@+id/TitleRow"
-        android:layout_width="363dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:background="#C2272D"
-        android:scrollbarStyle="insideInset">
-
-        <TextView
-            android:id="@+id/Location"
-            android:layout_width="122dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="5dp"
-            android:text="Location"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/SCases"
-            android:layout_width="23dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="5dp"
-            android:text="Cases"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/SDeaths"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="5dp"
-            android:text="Deaths"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold" />
-
-    </TableRow>
-
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp">
-
-        <TableLayout
-            android:id="@+id/CityStats"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbarStyle="insideOverlay"
-            android:scrollbars="horizontal" />
-    </ScrollView>
+        android:layout_marginTop="16dp" />
 
 </LinearLayout>
