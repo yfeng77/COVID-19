@@ -40,20 +40,41 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * A Fragment that shows the news section
+ *
+ */
 public class NewsFragment extends Fragment {
 
     ExpandableListAdapter listAdapter;
     ExpandableListView expListView;
     List<String> listDataHeader;
     HashMap<String, List<String>> listDataChild;
-    public static final String TAG = "MyTag";
-    RequestQueue requestQueue;  // Assume this exists.
 
+    public static final String TAG = "MyTag";
+    RequestQueue requestQueue;
+
+    /**
+     * Called to have the fragment instantiate its user interface view
+     *
+     * @param inflater The LayoutInflater object that can be used to inflate any views in the fragment
+     * @param container If non-null, this is the parent view that the fragment's UI should be attached to.
+     *                  The fragment should not add the view itself, but this can be used to generate the LayoutParams of the view.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed from a previous saved state as given here.
+     * @return View Return the View for the fragment's UI, or null.
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_news, container, false);
     }
 
+    /**
+     * Called when all saved state has been restored into the view hierarchy of the fragment.
+     * This can be used to do initialization based on saved state that you are letting the view hierarchy track itself,
+     * such as whether check box widgets are currently checked.
+     *
+     * @param savedInstanceState If the fragment is being re-created from a previous saved state, this is the state
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -61,16 +82,15 @@ public class NewsFragment extends Fragment {
         // get the listview
         expListView = (ExpandableListView) view.findViewById(R.id.newlist);
 
-        // preparing list data
-       prepareListData();
-
-
+        // get list data
+       getListData();
     }
 
     /*
-     * Preparing the list data
+     * Getting the list data
+     *
      */
-    private void prepareListData() {
+    private void getListData() {
         // Instantiate the cache
         Cache cache = new DiskBasedCache(getActivity().getCacheDir(), 1024 * 1024); // 1MB cap
 
@@ -96,7 +116,8 @@ public class NewsFragment extends Fragment {
 
                             for (int i = 0; i < array.length(); i++) {
                                 JSONObject obj = array.getJSONObject(i);
-                                // Adding child data
+
+                                // Adding Header
                                 String title = obj.getString ("title");
                                 listDataHeader.add(title);
 
@@ -111,6 +132,7 @@ public class NewsFragment extends Fragment {
                             }
 
                             listAdapter = new ExpandableListAdapter(getActivity(), listDataHeader, listDataChild);
+
                             // setting list adapter
                             expListView.setAdapter(listAdapter);
 
@@ -128,9 +150,7 @@ public class NewsFragment extends Fragment {
 
         // Set the tag on the request.
         jsonObjectRequest.setTag(TAG);
-
         // Add the request to the RequestQueue.
         requestQueue.add(jsonObjectRequest);
-
     }
 }

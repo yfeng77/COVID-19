@@ -34,31 +34,52 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * A Fragment that shows the search section
+ *
+ */
 public class SearchFragment extends Fragment {
     TextView Tcases,TcasesI,Tdeaths,TdeathsI,Trecovered,TStateName;
     public static final String TAG = "MyTag";
     RequestQueue requestQueue;  // Assume this exists.
 
-
-
+    /**
+     * Called to have the fragment instantiate its user interface view
+     *
+     * @param inflater The LayoutInflater object that can be used to inflate any views in the fragment
+     * @param container If non-null, this is the parent view that the fragment's UI should be attached to.
+     *                  The fragment should not add the view itself, but this can be used to generate the LayoutParams of the view.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed from a previous saved state as given here.
+     * @return View Return the View for the fragment's UI, or null.
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_search, container, false);
     }
 
+    /**
+     * Called when all saved state has been restored into the view hierarchy of the fragment.
+     * This can be used to do initialization based on saved state that you are letting the view hierarchy track itself,
+     * such as whether check box widgets are currently checked.
+     *
+     * @param savedInstanceState If the fragment is being re-created from a previous saved state, this is the state
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        TableLayout tl = (TableLayout) view.findViewById(R.id.CityStats);
         super.onViewCreated(view, savedInstanceState);
+
         Tcases = (TextView) view.findViewById(R.id.CasesN);
         TcasesI = (TextView) view.findViewById(R.id.CasesI);
         Tdeaths = (TextView) view.findViewById(R.id.DeathN);
         TdeathsI = (TextView) view.findViewById(R.id.DeathI);
         Trecovered = (TextView) view.findViewById(R.id.RecoveredN);
         TStateName = (TextView) view.findViewById(R.id.StateName);
+
+        //search
         Button search = (Button) view.findViewById(R.id.search);
 
+        //chart
         WebView myWebView = (WebView) view.findViewById(R.id.webView);
         myWebView.getSettings().setLoadWithOverviewMode(true);
         myWebView.getSettings().setUseWideViewPort(true);
@@ -66,13 +87,15 @@ public class SearchFragment extends Fragment {
         myWebView.setWebChromeClient(new WebChromeClient());
         myWebView.loadUrl("https://lamp.cse.fau.edu/~yfeng2016/covidchart/StateChart.html");
 
-
+        //When click search button, get the user input and search the data
         search.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view)
             {
+                //get user input
                 EditText editText = (EditText) getActivity().findViewById(R.id.editText);
                 String name = editText.getText().toString();
 
+                // Instantiate the cache
                 Cache cache = new DiskBasedCache(getActivity().getCacheDir(), 1024 * 1024); // 1MB cap
 
                 // Set up the network to use HttpURLConnection as the HTTP client.
@@ -91,6 +114,7 @@ public class SearchFragment extends Fragment {
                             @Override
                             public void onResponse(JSONArray response) {
                                 try {
+                                    //read the first Jsonarray
                                     for (int i = 0; i < 1; i++) {
 
                                         JSONObject obj = response.getJSONObject(i);
@@ -109,7 +133,6 @@ public class SearchFragment extends Fragment {
                                         Trecovered.setText(recovered);
 
                                     }
-
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();

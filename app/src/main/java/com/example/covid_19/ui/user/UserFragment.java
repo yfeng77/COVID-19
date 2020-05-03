@@ -26,6 +26,10 @@ import com.google.android.gms.tasks.Task;
 
 import java.util.concurrent.Executor;
 
+/**
+ * A Fragment that shows the user's information section
+ *
+ */
 public class UserFragment extends Fragment {
 
     ImageView imageView;
@@ -34,12 +38,28 @@ public class UserFragment extends Fragment {
 
     GoogleSignInClient mGoogleSignInClient;
 
+    /**
+     * Called to have the fragment instantiate its user interface view
+     *
+     * @param inflater The LayoutInflater object that can be used to inflate any views in the fragment
+     * @param container If non-null, this is the parent view that the fragment's UI should be attached to.
+     *                  The fragment should not add the view itself, but this can be used to generate the LayoutParams of the view.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed from a previous saved state as given here.
+     * @return View Return the View for the fragment's UI, or null.
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_user, container, false);
     }
 
+    /**
+     * Called when all saved state has been restored into the view hierarchy of the fragment.
+     * This can be used to do initialization based on saved state that you are letting the view hierarchy track itself,
+     * such as whether check box widgets are currently checked.
+     *
+     * @param savedInstanceState If the fragment is being re-created from a previous saved state, this is the state
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -67,6 +87,7 @@ public class UserFragment extends Fragment {
             name.setText(personName);
             email.setText(personEmail);
 
+            //Check the user's photo
             try {
                 if (personPhoto != null)
                     Glide.with(this).load(personPhoto.toString()).into(imageView);
@@ -85,11 +106,13 @@ public class UserFragment extends Fragment {
                     }
                 }
             });
-
         }
-
     }
 
+/**
+ * Sign out the user google account
+ *
+ */
     private void signOut() {
         mGoogleSignInClient.signOut()
                 .addOnCompleteListener((Executor) this, new OnCompleteListener<Void>() {
@@ -99,7 +122,6 @@ public class UserFragment extends Fragment {
                     }
                 });
     }
-
 
 }
 

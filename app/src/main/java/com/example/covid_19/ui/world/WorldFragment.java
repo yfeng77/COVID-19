@@ -29,21 +29,43 @@ import com.example.covid_19.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * A Fragment that shows the world stats section
+ *
+ */
 public class WorldFragment extends Fragment {
-    TextView Tcases,TcasesI,Tdeaths,TdeathsI,Trecovered,TrecoveredI;
-    public static final String TAG = "MyTag";
-    RequestQueue requestQueue;  // Assume this exists.
 
+    TextView Tcases,TcasesI,Tdeaths,TdeathsI,Trecovered,TrecoveredI;
+
+    public static final String TAG = "MyTag";
+    RequestQueue requestQueue;
+
+    /**
+     * Called to have the fragment instantiate its user interface view
+     *
+     * @param inflater The LayoutInflater object that can be used to inflate any views in the fragment
+     * @param container If non-null, this is the parent view that the fragment's UI should be attached to.
+     *                  The fragment should not add the view itself, but this can be used to generate the LayoutParams of the view.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed from a previous saved state as given here.
+     * @return View Return the View for the fragment's UI, or null.
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_world, container, false);
     }
 
+    /**
+     * Called when all saved state has been restored into the view hierarchy of the fragment.
+     * This can be used to do initialization based on saved state that you are letting the view hierarchy track itself,
+     * such as whether check box widgets are currently checked.
+     *
+     * @param savedInstanceState If the fragment is being re-created from a previous saved state, this is the state
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        TableLayout tl = (TableLayout) view.findViewById(R.id.CityStats);
         super.onViewCreated(view, savedInstanceState);
+
         Tcases = (TextView) view.findViewById(R.id.CasesN);
         TcasesI = (TextView) view.findViewById(R.id.CasesI);
         Tdeaths = (TextView) view.findViewById(R.id.DeathN);
@@ -51,7 +73,7 @@ public class WorldFragment extends Fragment {
         Trecovered = (TextView) view.findViewById(R.id.RecoveredN);
         TrecoveredI = (TextView) view.findViewById(R.id.RecoveredI);
 
-
+        //chart
         WebView myWebView = (WebView) view.findViewById(R.id.webView);
         myWebView.getSettings().setLoadWithOverviewMode(true);
         myWebView.getSettings().setUseWideViewPort(true);
@@ -95,7 +117,6 @@ public class WorldFragment extends Fragment {
                             Trecovered.setText(recovered);
                             TrecoveredI.setText("+"+recoveredI);
 
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -111,7 +132,6 @@ public class WorldFragment extends Fragment {
 
         // Set the tag on the request.
         jsonObjectRequest.setTag(TAG);
-
         // Add the request to the RequestQueue.
         requestQueue.add(jsonObjectRequest);
 

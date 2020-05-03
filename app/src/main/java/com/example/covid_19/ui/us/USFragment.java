@@ -34,22 +34,43 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * A Fragment that shows the US stats section
+ *
+ */
 public class USFragment extends Fragment {
 
-    TextView Tcases,TcasesI,Tdeaths,TdeathsI,Trecovered,TrecoveredI;
+    TextView Tcases,TcasesI,Tdeaths,TdeathsI,Trecovered;
+
     public static final String TAG = "MyTag";
     RequestQueue requestQueue;  // Assume this exists.
 
-
+    /**
+     * Called to have the fragment instantiate its user interface view
+     *
+     * @param inflater The LayoutInflater object that can be used to inflate any views in the fragment
+     * @param container If non-null, this is the parent view that the fragment's UI should be attached to.
+     *                  The fragment should not add the view itself, but this can be used to generate the LayoutParams of the view.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed from a previous saved state as given here.
+     * @return View Return the View for the fragment's UI, or null.
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_usa, container, false);
     }
 
+    /**
+     * Called when all saved state has been restored into the view hierarchy of the fragment.
+     * This can be used to do initialization based on saved state that you are letting the view hierarchy track itself,
+     * such as whether check box widgets are currently checked.
+     *
+     * @param savedInstanceState If the fragment is being re-created from a previous saved state, this is the state
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         Tcases = (TextView) view.findViewById(R.id.CasesN);
         TcasesI = (TextView) view.findViewById(R.id.CasesI);
         Tdeaths = (TextView) view.findViewById(R.id.DeathN);
@@ -57,6 +78,7 @@ public class USFragment extends Fragment {
         Trecovered = (TextView) view.findViewById(R.id.RecoveredN);
         //TrecoveredI = (TextView) view.findViewById(R.id.RecoveredI);
 
+        //chart
         WebView myWebView = (WebView) view.findViewById(R.id.webView);
         myWebView.getSettings().setLoadWithOverviewMode(true);
         myWebView.getSettings().setUseWideViewPort(true);
@@ -121,6 +143,11 @@ public class USFragment extends Fragment {
 
     }
 
+
+    /**
+     * Get the State's stats and show in a table
+     *
+     */
     public void getstate()
     {
         // Instantiate the cache
@@ -146,6 +173,7 @@ public class USFragment extends Fragment {
 
                             for (int i = 0; i < response.length(); i++) {
 
+                                //create Tablerows and Textviews
                                 TableRow tr=new TableRow(getActivity());
                                 TextView Tlocation = new TextView(getActivity());
                                 Tlocation.setPadding(15,0,5,10);
@@ -154,10 +182,11 @@ public class USFragment extends Fragment {
                                 TextView Tdeath = new TextView(getActivity());
                                 Tdeath.setPadding(0,0,120,10);
 
+                                //read the data into the Textview
                                 JSONObject obj = response.getJSONObject(i);
                                 String location = obj.getString ("state");
                                 Tlocation.setText(location);
-                                tr.addView(Tlocation);
+                                tr.addView(Tlocation);//Add Textview to Tablerow
 
                                 String cases = obj.getString ("cases");
                                 Tcases.setText(cases);
@@ -166,12 +195,10 @@ public class USFragment extends Fragment {
                                 String deaths = obj.getString ("deaths");
                                 Tdeath.setText(deaths);
                                 tr.addView(Tdeath);
-                                
 
+                                //Add Tablerow to Tablelayout
                                 tl.addView(tr);
-
                             }
-
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -187,7 +214,7 @@ public class USFragment extends Fragment {
 
         // Set the tag on the request.
         jsonarrayRequest.setTag(TAG);
-
+        // Add the request to the RequestQueue.
         requestQueue.add(jsonarrayRequest);
 
     }
