@@ -1,10 +1,21 @@
 # COVID-19
 A school final project(Covid-19 APP) using Andriod Studio
 
-
 # Background
 Nowadays, Coronavirus has become one of the most concerned things for everyone. To help people better understand the situation of the Coronavirus, I created a mobile application你that can allow users to see the real-time situation. This application is mainly divided into two interfaces, one is the login interface, and the other is the main interface. Users can see the main interface after logging in with their Google account. The main interface contains five sections. Followed by U.S. statistics, search of state statistics, world statistics, real-time news about Coronavirus and the user information.
 
+# Usage
+Download and open with Android Studio
+
+# Screensht of the APP
+<h3>Login</h3>
+<img src="screenshot/login.png" width="300">
+<h3>Main</h3>
+<img src="screenshot/us.png" width="250">
+<img src="screenshot/search.png" width="250">
+<img src="screenshot/world.png" width="250">
+<img src="screenshot/news.png" width="250">
+<img src="screenshot/user.png" width="250">
 
 # API
 1. NovelCOVID API - US: https://corona.lmao.ninja/v2/countries/US
